@@ -22,7 +22,7 @@ for item in data:
 
 
 def save_data_to_file(board_info):
-    with open('tests/output.txt', 'w') as file:
+    with open('tests/output.txt', 'a') as file:
         for element in data:
             if data[element]['Counter'] > 0:
                 file.write('Board info: \n')
