@@ -2,7 +2,7 @@ import networkx as nx
 
 from math import cos, sin, pi
 
-from Algorithms.algorithms import a_start, dijkstra_camino
+from src.Algorithms.algorithms import a_start, dijkstra_camino
 
 
 def get_attr_val(G, node, attribute):
