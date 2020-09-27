@@ -1,11 +1,11 @@
-from Entities.Board import Board
+from src.Entities.Board import Board
 
 import pygame
 
 
 class DrawableBoard(Board):
-    def init(self, m, n, x, y, width, height, separation, color):
-        Board.init(self, m, n)
+    def __init__(self, m, n, x, y, width, height, separation, color):
+        Board.__init__(self, m, n)
         self.x, self.y = x, y
         self.w, self.h = width, height
         self.c = color

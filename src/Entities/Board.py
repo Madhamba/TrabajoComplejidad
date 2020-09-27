@@ -3,7 +3,7 @@ from src.util import rotate
 
 
 class Board:
-    def init(self, m, n):
+    def __init__(self, m, n):
         self.m, self.n = m, n
         self.G = nx.grid_2d_graph(m, n)
 
