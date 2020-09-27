@@ -1,4 +1,4 @@
-from Entities.Game import Game
+from src.Entities.Game import Game
 
 n_players = int(input('Ingrese la cantidad de jugadores (2 o 4): '))
 
@@ -19,4 +19,5 @@ else:
     show_interface = False
 
 g = Game(m, n, n_players)
+print("Game Start")
 g.start(show_interface, screen_size)

@@ -1,0 +1,12 @@
+Algorithm: dijkstra_camino
+Average time: 0.04843581164324725
+
+Algorithm: a_star
+Average time: 0.05998334517845741
+
+Algorithm: bellman_ford_path
+Average time: 0.1277480125427246
+
+Algorithm: shortest_path
+Average time: 0.011446696740609628
+

@@ -87,13 +87,14 @@ class Game:
 
         done = False
         n_player_turn = randint(0, self.n_players - 1)
-
+        winner = None
         while not done:
             self.move_current_player(n_player_turn)
             if self.players[n_player_turn].is_in_winning_position():
+                winner = self.players[n_player_turn]
                 done = True
             n_player_turn = (n_player_turn + 1) % self.n_players
-
+        print(winner.n_player)
         save_data_to_file()
 
     def start_interface(self, screen_size):
