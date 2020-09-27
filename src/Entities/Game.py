@@ -21,13 +21,16 @@ for item in data:
     data[item]['Algorithm'] = get_player_movement_algorithm(item).__name__
 
 
-def save_data_to_file():
+def save_data_to_file(board_info):
     with open('tests/output.txt', 'w') as file:
         for element in data:
             if data[element]['Counter'] > 0:
+                file.write('Board info: \n')
+                file.write('\tm: ' + str(board_info.m))
+                file.write('\tn: ' + str(board_info.n))
                 data[element]['Average time'] = data[element]['Total'] / data[element]['Counter']
-                file.write('Algorithm: ' + str(data[element]['Algorithm']) + '\n')
-                file.write('Average time: ' + str(data[element]['Average time']) + '\n' + '\n')
+                file.write('\tAlgorithm: ' + str(data[element]['Algorithm']) + '\n')
+                file.write('\tAverage time: ' + str(data[element]['Average time']) + '\n' + '\n')
 
 
 class Game:
