@@ -93,4 +93,3 @@ def _dijkstra_multisource(
                     pred[u].append(verti)
 
     return distancia
-
