@@ -14,7 +14,7 @@ def dijkstra_camino(G, inicio, final, atributo="weight"):
     (distancia_total, camino) = para_un_vertice(G, inicio, final=final, atributo=atributo)
     return camino
 
-def a_start(G, nodo_inicial, nodo_final):
+def a_star(G, nodo_inicial, nodo_final):
     push = hq.heappush
     pop = hq.heappop
     contar = itr.count()
