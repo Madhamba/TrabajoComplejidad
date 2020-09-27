@@ -9,7 +9,6 @@ from src.Entities.Board import Board
 from src.Entities.Player import Player
 from src.util import rotate, get_player_movement_algorithm
 
-
 data = {
     1: {'Algorithm': None, 'Total': 0.00, 'Counter': 0, 'Average time': 0.00},
     2: {'Algorithm': None, 'Total': 0.00, 'Counter': 0, 'Average time': 0.00},
@@ -21,17 +20,17 @@ for item in data:
     data[item]['Algorithm'] = get_player_movement_algorithm(item).__name__
 
 
-def save_data_to_file(board_info):
-    with open('tests/output.txt', 'a') as file:
+def save_data_to_file(board_info, winner):
+    with open('output.txt', 'a') as file:
+        file.write('Board info: \n')
+        file.write('\tm: ' + str(board_info.m))
+        file.write('\tn: ' + str(board_info.n) + '\n' + '\n')
         for element in data:
             if data[element]['Counter'] > 0:
-                file.write('Board info: \n')
-                file.write('\tm: ' + str(board_info.m))
-                file.write('\tn: ' + str(board_info.n))
                 data[element]['Average time'] = data[element]['Total'] / data[element]['Counter']
                 file.write('\tAlgorithm: ' + str(data[element]['Algorithm']) + '\n')
-                file.write('\tAverage time: ' + str(data[element]['Average time']) + '\n' + '\n')
-
+                file.write('\tAverage time: ' + str(data[element]['Average time']) + '\n')
+        file.write("\tGano el jugador " + str(winner.n_player) + " en " + str(data[winner.n_player]['Total']) + " con " + str(data[winner.n_player]['Counter']) + " jugadas" + '\n\n')
 
 class Game:
     def __init__(self, m, n, n_players):
@@ -97,8 +96,9 @@ class Game:
                 winner = self.players[n_player_turn]
                 done = True
             n_player_turn = (n_player_turn + 1) % self.n_players
-        print(winner.n_player)
-        save_data_to_file()
+        print("Gano el jugador", winner.n_player, " en ", data[winner.n_player]['Total'], " con ",
+              data[winner.n_player]['Counter'], " jugadas")
+        save_data_to_file(self.board, winner)
 
     def start_interface(self, screen_size):
         screen = pygame.display.set_mode(screen_size)
@@ -135,6 +135,7 @@ class Game:
                 done = True
             n_player_turn = (n_player_turn + 1) % self.n_players
 
-        print(winner.n_player)
-        save_data_to_file()
+        print("Gano el jugador", winner.n_player, " en ", data[winner.n_player]['Total'], " con ",
+              data[winner.n_player]['Counter'], " jugadas")
+        save_data_to_file(self.board, winner)
         pygame.quit()
