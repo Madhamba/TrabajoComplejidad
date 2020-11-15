@@ -1,0 +1,26 @@
+Board info: 
+	m: 19	n: 19
+
+	Algorithm: dijkstra_camino
+	Average time: 0.013571485877037048
+	Algorithm: a_star
+	Average time: 0.016929023406084848
+	Algorithm: bellman_ford_path
+	Average time: 0.033828356686760395
+	Algorithm: shortest_path
+	Average time: 0.0017601742463953355
+	Gano el jugador 4 en 0.029922962188720703 con 17 jugadas
+
+Board info: 
+	m: 9	n: 9
+
+	Algorithm: dijkstra_camino
+	Average time: 0.0009968678156534831
+	Algorithm: a_star
+	Average time: 0.0011476448604038783
+	Algorithm: bellman_ford_path
+	Average time: 0.00300356319972447
+	Algorithm: shortest_path
+	Average time: 0.0
+	Gano el jugador 4 en 0.0 con 7 jugadas
+
