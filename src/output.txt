@@ -24,3 +24,12 @@ Board info:
 	Average time: 0.0
 	Gano el jugador 4 en 0.0 con 7 jugadas
 
+Board info: 
+	m: 9	n: 9
+
+	Algorithm: dijkstra_camino
+	Average time: 0.0008615425654820033
+	Algorithm: a_star
+	Average time: 0.004858085087367466
+	Gano el jugador 3 en 0.0 con 0 jugadas
+

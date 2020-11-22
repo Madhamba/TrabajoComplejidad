@@ -1,7 +1,8 @@
 import itertools as itr
 import heapq as hq
-
+from src.Algorithms.bellman_ford import un_inicio_bellman_ford
 from src.Algorithms.algorithms_util import para_un_vertice
+
 
 # El atributo de las aristas ser[a por defecto weight
 def dijkstra_camino(G, inicio, final, atributo="weight"):
@@ -13,6 +14,7 @@ def dijkstra_camino(G, inicio, final, atributo="weight"):
 
     (distancia_total, camino) = para_un_vertice(G, inicio, final=final, atributo=atributo)
     return camino
+
 
 def a_star(G, nodo_inicial, nodo_final):
     push = hq.heappush
@@ -54,3 +56,8 @@ def a_star(G, nodo_inicial, nodo_final):
             push(cola, (ncosto + h, next(contar), vecino, ncosto, actual))
 
     print("No existe camino entre el nodo inicial y el nodo final")
+
+
+def bellman_ford_camino(G, inicio, meta, peso="weight"):
+    distancia, camino = un_inicio_bellman_ford(G, inicio, meta=meta, peso=peso)
+    return camino

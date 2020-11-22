@@ -2,7 +2,7 @@ import networkx as nx
 
 from math import cos, sin, pi
 
-from src.Algorithms.algorithms import a_star, dijkstra_camino
+from src.Algorithms.algorithms import a_star, dijkstra_camino, bellman_ford_camino
 
 
 def get_attr_val(G, node, attribute):
@@ -49,7 +49,7 @@ def get_player_movement_algorithm(n_player):
     algorithms = {
         1: dijkstra_camino,
         2: a_star,
-        3: nx.bellman_ford_path,
+        3: bellman_ford_camino,
         4: nx.shortest_path
     }
     return algorithms[n_player]
