@@ -1,48 +1,20 @@
 import networkx as nx
 
-from src.util import get_player_movement_algorithm, add_node_util, add_edge_util, remove_edge_util, remove_node_util, \
-    get_attr_val
+from Util.networkx_util import *
 
 
-class Player:
-    def __init__(self, n_player, board):
-        # Player positions
-        #       1. Top
-        #       2. Bottom
-        #       3. Left
-        #       4. Right
-
-        self.n_player = n_player
-        self.G = board.G.copy()
-        self.x, self.y = board.n // 2, board.m - 1
+class PlayerBoard:
+    def __init__(self, board, n_players):
+        self.G = nx.grid_2d_graph(board.n, board.m)
 
         nx.set_node_attributes(self.G, False, 'is_winning_pos')
         for i in range(board.n):
             self.G.nodes[(0, i)]['is_winning_pos'] = True
 
         self.remove_node(board.n // 2, 0)
-        self.remove_node(0, board.m // 2)
-        self.remove_node(board.n - 1, board.m // 2)
-
-    def update_position(self):
-        algorithm = get_player_movement_algorithm(self.n_player)
-        winning_nodes = [n for n, d in self.G.nodes(data=True) if d['is_winning_pos']]
-        best_path = None
-        for node in winning_nodes:
-            path = algorithm(self.G, (self.y, self.x), node)
-            if best_path is None or len(path) < len(best_path):
-                best_path = path
-        self.y, self.x = best_path[1]
-
-    def is_in_winning_position(self):
-        winning_nodes = [n for n, d in self.G.nodes(data=True) if d['is_winning_pos']]
-        return (self.y, self.x) in winning_nodes
-
-    def update_view(self, prev_pos, new_pos):
-        # x, y represent the position of the opposite player relative to this
-        # player
-        self.add_node(prev_pos[0], prev_pos[1])
-        self.remove_node(new_pos[0], new_pos[1])
+        if n_players == 4:
+            self.remove_node(0, board.m // 2)
+            self.remove_node(board.n - 1, board.m // 2)
 
     def add_node(self, x, y):
         add_node_util(self.G, (y, x))
@@ -81,3 +53,12 @@ class Player:
         elif (y - 1, x) not in self.G.nodes:
             add_edge_util(self.G, (y + 1, x), (y, x - 1))
             add_edge_util(self.G, (y + 1, x), (y, x + 1))
+
+    def remove_edge(self, edge1, edge2):
+        remove_edge_util(self.G, edge1[0], edge1[1])
+        remove_edge_util(self.G, edge2[0], edge2[1])
+
+    def add_edge(self, edge1, edge2):
+        add_edge_util(self.G, edge1[0], edge1[1])
+        add_edge_util(self.G, edge2[0], edge2[1])
+
